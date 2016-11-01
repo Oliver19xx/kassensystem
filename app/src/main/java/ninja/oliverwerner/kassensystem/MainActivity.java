@@ -6,40 +6,42 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String[] queryButtons(){
-        String[] buttonArray = {
-                "Getränke",
-                "Vorspeisen",
-                "Hauptspeisen",
-                "Nachtisch"
-        };
-        return buttonArray;
-    }
+    static final String[] menuItems = new String[]{
+            "Getränke",
+            "menu-item 2",
+            "menu-item 3",
+            "menu-item 4",
+            "menu-item 5",
+            "menu-item 6",
+            "menu-item 7",
+            "menu-item 8",
+            "menu-item 9",
+            "menu-item 10",
+            "menu-item 11",
+            "menu-item 12",
+            "menu-item 13",
+            "menu-item 14",
+            "menu-item 15",
+            "menu-item 16",
+            "menu-item 17",
+            "menu-item 18",
+            "menu-item 19",
+            "menu-item 20",
+            "menu-item 21"
+    };
 
-    private void generateButtons(){
-        String[] buttonNameArray = queryButtons();
-        Button[] buttonArray = new Button[buttonNameArray.length];
-        GridView gridView = (GridView) findViewById(R.id.gridView);
+    private void showMenu(String[] menuItems){
 
-        for (int i = 0; i < buttonArray.length; i++){
+        GridView gvMain = (GridView) findViewById(R.id.gvMain);
+        gvMain.setAdapter(new ButtonAdapter(this, menuItems));
 
-            Button btn = new Button(this);
-
-            btn.setText(buttonNameArray[i]);
-            btn.setLayoutParams(new GridLayout.LayoutParams());
-            btn.setMaxWidth(50);
-            btn.setMaxHeight(50);
-            btn.setPadding(10, 10, 10, 10);
-            gridView.addView(btn, i);
-        }
-
-        ArrayAdapter adapter = new ArrayAdapter(this,buttonArray);
         return;
     }
 
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        generateButtons();
+
+        showMenu(menuItems);
     }
 }
