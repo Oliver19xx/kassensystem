@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">kassensystem</string>
+    <string name="app_name">Kassen-System</string>
+    <string name="tables">Tische</string>
+    <string name="products">Produkte</string>
 </resources>
