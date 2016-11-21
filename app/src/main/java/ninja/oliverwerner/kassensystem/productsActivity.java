@@ -6,10 +6,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProductsActivity extends AppCompatActivity {
 
-    static final String[] prductItems = new String[] {"Pommes","Cola","Burger","Fanta","Salat","Gurken","Cola","Burger","Fanta","Salat","Gurken","Cola","Burger","Fanta","Salat","Gurken","Cola","Burger","Fanta","Salat","Gurken","Cola","Burger","Fanta","Salat","Gurken","Cola","Burger","Fanta","Salat","Gurken"};
+//    new Product(001,"Coca-Cola 0,5l","Getränke",1.25)
+    private ArrayList<Product> productList = new ArrayList<Product>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,21 +22,22 @@ public class ProductsActivity extends AppCompatActivity {
         String topic = bundle.getString("topic");
 
         setTitle(topic);
-
+        loadProducts();
         showProducts();
     }
 
     public void showProducts(){
         ListView listView = (ListView) findViewById(R.id.lwProducts);
 
-        ArrayList<Product> arrayList = new ArrayList<>();
-        for (int i = 0; i < prductItems.length ; i++){
-            arrayList.add(new Product(prductItems[i],"Category",0.00));
-        }
-
         // TODO: 20.11.2016 Adapter fertigstellen mit einer Liste von Product-Objekten
-        CustomeProductListAdapter customeProductListAdapter = new CustomeProductListAdapter(this,arrayList);
+        CustomeProductListAdapter customeProductListAdapter = new CustomeProductListAdapter(this,productList);
 
         listView.setAdapter(customeProductListAdapter);
+    }
+    private void loadProducts(){
+        productList.add(new Product(001,"Coca-Cola 0,5l","Getränke",1.25));
+        productList.add(new Product(002,"Fanta 0,5l","Getränke",1.0));
+        productList.add(new Product(003,"Sprite 0,5l","Getränke",1.0));
+        productList.add(new Product(004,"Steak 300g","Essen",11.50));
     }
 }
