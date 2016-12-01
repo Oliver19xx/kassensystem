@@ -10,12 +10,17 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class TablesActivity extends AppCompatActivity {
 
-    String[] tables = {"Tisch1", "Tisch2", "Tisch3", "Tisch4", "Tisch5", "Tisch6", "Tisch7", "Tisch8", "Tisch9", "Tisch10", "Tisch11", "Tisch12", "Tisch13", "Tisch14"};
-    String request = "Noch nicht gesetzt!";
+    ArrayList<Table> tableList = new ArrayList<>();
 
     // TODO: 01.12.2016 hier json übergeben
     @Override
@@ -28,37 +33,53 @@ public class TablesActivity extends AppCompatActivity {
 
         setTitle(topic);
 
+        /*//Textfeld auf dem Layout
+        final TextView textView = (TextView) findViewById(R.id.textView);
+
+        Button loadTablesBtn = (Button) findViewById(R.id.loadTablesBtn);
+        loadTablesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new ActivityDataSource(textView).execute("someParams");
+            }
+        });*/
+
         loadTables();
     }
 
     private void loadTables() {
         Log.d("myMessage", "loadTables()");
 
-        ArrayList<Table> tableList = new ArrayList<>();
-        Button loadTablesBtn = (Button) findViewById(R.id.loadTablesBtn);
 
-        Log.d("myMessage", "loadTables()");
+        final TextView textView = (TextView) new TextView(this);
 
-        loadTablesBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ActivityDataSource activityDataSource = new ActivityDataSource(request);
-                activityDataSource.execute("someParams");
-                request = activityDataSource.getRequest();
-                // TODO: 01.12.2016 wann kann aus der Variable request gelesen werden?
-                Log.d("myMessage", request);
+        try {
+            // Hole mir den Rückgabe-String und speicher ihn in einer Variable ab
+            String jsonString = new ActivityDataSource(textView).execute("someParams").get();
+            // Erstelle aus dem JSON-String ein JSONArray
+            JSONArray jsonArray = new JSONArray(jsonString);
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                try {
+                    // Hole aus dem JSONArray ein JSONObjekt und speicher die Daten in Variablen
+                    JSONObject oneObject = jsonArray.getJSONObject(i);
+                    int id = oneObject.getInt("ID");
+                    String name = oneObject.getString("name");
+                    int status = oneObject.getInt("status");
+                    // Füge die Daten aus dem JSONObjekt in die Erstellung eines neuen Tisches ein und hänge diesen an die Liste an
+                    tableList.add(new Table(id, name, status));
+                    Log.d("myMessage", "ID->" + id + " | name->" + name + " | status->" + status);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
-        });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-//        new ActivityDataSource(request).execute("someParams");
-
-
-//        for (int i = 0; i < tables.length ; i++){
-//            tableList.add(tables[i]);
-//        }
-
-//        GridView gridView = (GridView) findViewById(R.id.gvTables);
-//        CustomeGridAdapter customeGridAdapter = new CustomeGridAdapter(this,R.layout.simple_button_layout,tableList);
-//        gridView.setAdapter(customeGridAdapter);
+        GridView gridView = (GridView) findViewById(R.id.gvMain);
+        // TODO: 02.12.2016 Adapter schreiben der mit Table-Objekten umgehen kann
+        CustomeGridAdapter customeGridAdapter = new CustomeGridAdapter(this, R.layout.simple_button_layout, tableList);
+        gridView.setAdapter(customeGridAdapter);
     }
 }

@@ -3,6 +3,7 @@ package ninja.oliverwerner.kassensystem;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,14 +22,15 @@ public class ActivityDataSource extends AsyncTask<String, Void, String> {
 
     private static final String DESTINATION_METHOD = "allEntrys";
 
-    private String request;
+    private TextView textView;
 
     private  URLConnection conn;
 
     private String LOG = "myMessage";
 
-    public ActivityDataSource(String request) {
-        this.request = request;
+    public ActivityDataSource(TextView textView) {
+        Log.d(LOG, "ActivityDataSource");
+        this.textView = textView;
     }
 
     @Override
@@ -91,19 +93,14 @@ public class ActivityDataSource extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         Log.d(LOG,"onPostExecute");
         if(!isBlank(result)) {
-            Log.d(LOG,"onPostExecute - "+result);
-            this.request = result;
+            //String[] arr = result.split("\\|");
+            this.textView.setText(result);
         }
     }
 
     private boolean isBlank(String value){
         Log.d(LOG,"isBlank");
         return value == null || value.trim().isEmpty();
-    }
-
-    public String getRequest(){
-        Log.d(LOG,"getRequest() - "+this.request);
-        return this.request;
     }
 
 

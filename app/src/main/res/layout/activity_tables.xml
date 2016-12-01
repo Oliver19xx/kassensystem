@@ -14,9 +14,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/loadTablesBtn" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <GridView
+        android:id="@+id/gvTables"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/gvTables"
         android:numColumns="auto_fit"></GridView>
 </LinearLayout>
