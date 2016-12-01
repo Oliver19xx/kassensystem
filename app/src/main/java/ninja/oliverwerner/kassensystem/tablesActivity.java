@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class TablesActivity extends AppCompatActivity {
 
-    String[] tables = {"Tisch1","Tisch2","Tisch3","Tisch4","Tisch5","Tisch6","Tisch7","Tisch8","Tisch9","Tisch10","Tisch11","Tisch12","Tisch13","Tisch14"};
+    String[] tables = {"Tisch1", "Tisch2", "Tisch3", "Tisch4", "Tisch5", "Tisch6", "Tisch7", "Tisch8", "Tisch9", "Tisch10", "Tisch11", "Tisch12", "Tisch13", "Tisch14"};
     String request = "Noch nicht gesetzt!";
 
     // TODO: 01.12.2016 hier json übergeben
@@ -31,7 +31,7 @@ public class TablesActivity extends AppCompatActivity {
         loadTables();
     }
 
-    private void loadTables(){
+    private void loadTables() {
         Log.d("myMessage", "loadTables()");
 
         ArrayList<Table> tableList = new ArrayList<>();
