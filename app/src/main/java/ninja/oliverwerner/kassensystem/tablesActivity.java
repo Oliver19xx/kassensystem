@@ -45,6 +45,7 @@ public class TablesActivity extends AppCompatActivity {
                 ActivityDataSource activityDataSource = new ActivityDataSource(request);
                 activityDataSource.execute("someParams");
                 request = activityDataSource.getRequest();
+                // TODO: 01.12.2016 wann kann aus der Variable request gelesen werden?
                 Log.d("myMessage", request);
             }
         });
