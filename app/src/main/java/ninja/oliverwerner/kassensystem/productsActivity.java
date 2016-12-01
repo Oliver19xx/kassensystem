@@ -2,15 +2,12 @@ package ninja.oliverwerner.kassensystem;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class ProductsActivity extends AppCompatActivity {
+public class productsActivity extends AppCompatActivity {
 
-//    new Product(001,"Coca-Cola 0,5l","Getränke",1.25)
     private ArrayList<Product> productList = new ArrayList<Product>();
 
     @Override
