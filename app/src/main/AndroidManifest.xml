@@ -17,10 +17,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".tablesActivity"
+            android:name=".TablesActivity"
             android:label="@string/tables" />
-        <activity android:name=".productsActivity" />
-        <activity android:name=".settingsActivity"></activity>
+        <activity android:name=".ProductsActivity" />
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>

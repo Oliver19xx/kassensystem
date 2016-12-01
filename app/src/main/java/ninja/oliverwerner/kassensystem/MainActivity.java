@@ -70,13 +70,13 @@ public class MainActivity extends AppCompatActivity {
         Class aClass;
         switch (string){
             case "Tische":
-                aClass = tablesActivity.class;
+                aClass = TablesActivity.class;
                 break;
             case "Produkte":
-                aClass = productsActivity.class;
+                aClass = ProductsActivity.class;
                 break;
             case "Einstellungen":
-                aClass = settingsActivity.class;
+                aClass = SettingsActivity.class;
                 break;
             default:
                 Toast.makeText(this,"\"" + string +"\" not found", Toast.LENGTH_SHORT).show();
