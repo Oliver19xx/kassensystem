@@ -13,7 +13,7 @@ public class Table {
     }
 
     public int getTableId() {
-        return tableId;
+        return this.tableId;
     }
 
     public void setTableId(int tableId) {
@@ -21,7 +21,7 @@ public class Table {
     }
 
     public String getTableName() {
-        return tableName;
+        return this.tableName;
     }
 
     public void setTableName(String tableName) {

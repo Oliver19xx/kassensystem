@@ -77,9 +77,10 @@ public class TablesActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        GridView gridView = (GridView) findViewById(R.id.gvMain);
         // TODO: 02.12.2016 Adapter schreiben der mit Table-Objekten umgehen kann
-        CustomeGridAdapter customeGridAdapter = new CustomeGridAdapter(this, R.layout.simple_button_layout, tableList);
-        gridView.setAdapter(customeGridAdapter);
+        GridView gvTables = (GridView) findViewById(R.id.gvTables);
+        TableGridAdapter adapter = new TableGridAdapter(this, R.layout.simple_button_layout, tableList);
+//        CustomeGridAdapter customeGridAdapter = new CustomeGridAdapter(this, R.layout.simple_button_layout, tableList);
+        gvTables.setAdapter(adapter);
     }
 }
