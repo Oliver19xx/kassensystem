@@ -1,6 +1,7 @@
 package ninja.oliverwerner.kassensystem;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -9,9 +10,13 @@ import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.R.attr.button;
 
 /**
  * Created by Oliver on 02.12.2016.
@@ -21,6 +26,7 @@ public class TableGridAdapter extends ArrayAdapter<Table> {
 
     private Context context;
     private ArrayList<Table> arrayList;
+    private Button button;
 
     public TableGridAdapter(Context context, int resource, ArrayList<Table> arrayList) {
         super(context, resource, arrayList);
@@ -31,8 +37,7 @@ public class TableGridAdapter extends ArrayAdapter<Table> {
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Button button;
-        Table table = getItem(position);
+        final Table table = getItem(position);
 
         if (convertView == null) {
             button = new Button(parent.getContext());
@@ -46,6 +51,14 @@ public class TableGridAdapter extends ArrayAdapter<Table> {
 
         button.setId(position);
 
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(view.getContext(), table.getTableId() + " => " + table.getTableName(), Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(view.getContext(), TablesActivity.class);
+//                context.startActivity(intent);
+            }
+        });
         return button;
     }
+
 }
